@@ -117,3 +117,19 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+dependencies {
+    // Excluir módulos específicos de support library globalmente
+    configurations.all {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'appcompat-v7' // A veces también arrastra esto
+        exclude group: 'com.android.support', module: 'recyclerview-v7' // Si tienes recycler views
+        exclude group: 'com.android.support', module: 'design' // Si tienes material design antiguo
+        // Puedes añadir más exclusiones si el problema persiste y identificas otras libs antiguas
+    }
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    // ... el resto de tus dependencias
+}
+
