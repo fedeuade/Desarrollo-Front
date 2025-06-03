@@ -5,6 +5,7 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native';
 import React,{Fragment, useEffect, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
@@ -17,6 +18,7 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  ViewComponent,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {
@@ -26,6 +28,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import NavigationStack from './navigation/NavigationStack';
 
 
 
@@ -85,80 +88,10 @@ function App(): React.JSX.Element {
 
   
   return (
-    <View style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            paddingHorizontal: safePadding,
-            paddingBottom: safePadding,
-          }}>
-      <View style={{marginTop: 200, alignItems: 'center' }}>
-        <Text style={styles.highlight}>Ingresa a tu cuenta</Text>
-      </View>
-      <View style={{ marginTop: 30 }}>
-        <TextInput
-          style={{
-            height: 50,
-            borderColor: '#ccc',
-            borderWidth: 1,
-            borderRadius: 5,
-            paddingHorizontal: 10,
-            color: isDarkMode ? '#fff' : '#000',
-            backgroundColor: isDarkMode ? '#222' : '#fff',
-          }}
-          placeholder="Correo electrónico"
-          placeholderTextColor={isDarkMode ? '#888' : '#888'}
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-      </View>
-       <View style={{ marginTop: 15 }}>
-        <TextInput
-            style={{
-              height: 50,
-              borderColor: '#ccc',
-              borderWidth: 1,
-              borderRadius: 5,
-              paddingHorizontal: 10,
-              color: isDarkMode ? '#fff' : '#000',
-              backgroundColor: isDarkMode ? '#222' : '#fff',
-            }}
-            placeholder="Contraseña"
-            placeholderTextColor={isDarkMode ? '#888' : '#888'}
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={true}
-            />
-       
-      </View>
-       <View style={{ marginTop: 30 }}>
-          <TouchableOpacity
-              onPress={() => console.log('Iniciar sesion')}
-              style={{
-                height: 50,
-                borderColor: '#ccc',
-                borderWidth: 1,
-                borderRadius: 5,
-                paddingHorizontal: 10,
-                backgroundColor: isDarkMode ? '#03045E' : '#03045E',
-                justifyContent: 'center',
-                alignItems: 'center',
-
-              }}
-            >
-              <Text style={{ color: isDarkMode ? '#fff' : '#fff' }}>Iniciar sesion</Text>
-      </TouchableOpacity>
-
-
-      </View>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-        <View style={{paddingRight: safePadding}}>
-        </View>
-       
-    </View>
+   <NavigationContainer>
+    <NavigationStack/>
+    
+   </NavigationContainer>
   );
 }
 
@@ -185,6 +118,15 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       color: '#03045E',        
   },
+   alternativa: {
+      fontSize: 15,         // Tamaño según "Títulos 30"
+      fontWeight: 'bold',   // Estilo común en títulos
+      width: 170,
+      height: 50,
+      textAlign: 'right',
+      color: '#0077B6',        
+  },
+
 });
 
 export default App;
