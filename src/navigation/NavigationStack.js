@@ -1,16 +1,24 @@
 import React from 'react'
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
-import LoginScreen from '../ui/components/LoginScreen'
-import ForgetPasswordScreen from '../ui/components/ForgetPasswordScreen'
+import LoginScreen from '../ui/screens/LoginScreen'
+import ForgetPasswordScreen from '../ui/screens/ForgetPasswordScreen'
+import EnterCodeScreen from '../ui/screens/EnterCodeScreen';
+import CreateNewPasswordScreen from '../ui/screens/CreateNewPasswordScreen';
+
 
 const Stack= createNativeStackNavigator();
 
 export default function NavigationStack(){
   
 return(
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="CreateNewPassword">
+
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
+        <Stack.Screen name="EnterCode" component={EnterCodeScreen}/>
+        <Stack.Screen name="CreateNewPassword" component={CreateNewPasswordScreen}/>
+
+
 
     </Stack.Navigator>
     )
