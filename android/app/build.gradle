@@ -133,3 +133,6 @@ dependencies {
     // ... el resto de tus dependencias
 }
 
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+
