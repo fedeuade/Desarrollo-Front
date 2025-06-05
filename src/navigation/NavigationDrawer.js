@@ -10,7 +10,12 @@ import EmptyShiftScreen from '../ui/screens/EmptyShiftScreen';
 import ShiftHistoryScreen from '../ui/screens/ShiftHistoryScreen';
 import DoctorScreen from '../ui/screens/DoctorScreen';
 import ProfileScreen from '../ui/screens/ProfileScreen';
-
+import ShiftInfoScreen from  '../ui/screens/ShiftInfoScreen';
+import ShiftTypeScreen from '../ui/screens/ShiftTypeScreen';
+import ReserveSpecialityScreen from '../ui/screens/ReserveSpecialityScreen';
+import ShiftCancelScreen from '../ui/screens/ShiftCancelScreen';
+import ReserveProfessionalScreen from '../ui/screens/ReserveProfessionalScreen';
+import SuccessfulReservationScreen from '../ui/screens/SuccessfulReservationScreen';
 
 const Drawer = createDrawerNavigator()
 
@@ -28,6 +33,12 @@ export default function NavigationDrawer(){
             <Drawer.Screen name="Profile" component={ProfileScreen}/>
             <Drawer.Screen name="Doctor" component={DoctorScreen}/>
             <Drawer.Screen name="ShiftHistory" component={ShiftHistoryScreen}/>
+            <Drawer.Screen name="ShiftInfo" component={ShiftInfoScreen}/>
+            <Drawer.Screen name="ShiftType" component={ShiftTypeScreen} />
+            <Drawer.Screen name="ReserveSpeciality" component={ReserveSpecialityScreen} />
+            <Drawer.Screen name="ShiftCancel" component={ShiftCancelScreen} />
+            <Drawer.Screen name="ReserveProfessional" component={ReserveProfessionalScreen} />
+            <Drawer.Screen name="SuccessfulReservation" component={SuccessfulReservationScreen} />
 
             
         </Drawer.Navigator>

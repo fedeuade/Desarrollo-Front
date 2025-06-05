@@ -12,13 +12,18 @@ import ShiftHistoryScreen from '../ui/screens/ShiftHistoryScreen';
 import DoctorScreen from '../ui/screens/DoctorScreen';
 import ProfileScreen from '../ui/screens/ProfileScreen';
 import ShiftInfoScreen from  '../ui/screens/ShiftInfoScreen';
+import ShiftTypeScreen from '../ui/screens/ShiftTypeScreen';
+import ReserveSpecialityScreen from '../ui/screens/ReserveSpecialityScreen';
+import ShiftCancelScreen from '../ui/screens/ShiftCancelScreen';
+import ReserveProfessionalScreen from '../ui/screens/ReserveProfessionalScreen';
+import SuccessfulReservationScreen from '../ui/screens/SuccessfulReservationScreen';
 
 const Stack= createNativeStackNavigator();
 
 export default function NavigationStack(){
   
 return(
-    <Stack.Navigator initialRouteName="EmptyShift">
+    <Stack.Navigator initialRouteName="Register">
 
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
@@ -33,7 +38,15 @@ return(
       <Stack.Screen name="Doctor" component={NavigationTab}  options={{ headerShown: false }}  />
       <Stack.Screen name="ShiftHistory" component={NavigationTab}  options={{ headerShown: false }}  />
       <Stack.Screen name="Profile" component={NavigationTab}  options={{ headerShown: false }}  />
-    <Stack.Screen name="ShiftInfoScreen" component={ShiftInfoScreen} />
+      <Stack.Screen name="ShiftInfoScreen" component={ShiftInfoScreen} />
+    
+      <Stack.Screen name="ShiftType" component={ShiftTypeScreen} />
+      <Stack.Screen name="ReserveSpeciality" component={ReserveSpecialityScreen} />
+      <Stack.Screen name="ShiftCancel" component={ShiftCancelScreen} />
+      <Stack.Screen name="ReserveProfessional" component={ReserveProfessionalScreen} />
+      <Stack.Screen name="SuccessfulReservation" component={SuccessfulReservationScreen} />
+
+
 
 
     </Stack.Navigator>
