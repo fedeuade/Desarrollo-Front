@@ -6,12 +6,12 @@ import ButtonPrincipal from '../components/ButtonPrincipal';
 
 
 export default function EmptyShiftScreen(props) {
-  
+
   const{navigation}=props;
 
-   const goToLogin = () => {
-        console.log("Navegando a Login");
-        navigation.navigate("Login");
+   const goToShiftType = () => {
+        console.log("Navegando a reserva por tipo");
+        navigation.navigate("ShhiftType");
     };
 
   return (
@@ -28,9 +28,14 @@ export default function EmptyShiftScreen(props) {
 
       <Text style={{color:'#888',paddingHorizontal:30,marginTop:10,fontSize:15, textAlign:'center'}}>No tienes turnos reservados</Text>
       
-        <View style={{marginTop:80,paddingHorizontal:30}}>
-          <ButtonPrincipal text="Reservar turno"/>
-        </View>
+      <View style={{marginTop:80,paddingHorizontal:30}}>
+             <TouchableOpacity
+                    style={[styles.ButtonProfesional, {backgroundColor: '#03045E'}]}
+                    onPress={() => navigation.navigate("ShiftType")} >
+      
+                < Text style={{ color: '#fff' }}>Reservar Turno</Text>
+            </TouchableOpacity>
+            </View>
 
       
              
@@ -49,6 +54,14 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#03045E',
   },
+   ButtonProfesional:{
+   height: 50,
+   borderRadius: 8,
+   paddingHorizontal: 10,
+   justifyContent: 'center',
+   alignItems: 'center',
+           
+        }     
      }
 );
 

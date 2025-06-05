@@ -2,7 +2,7 @@ import { Text, StyleSheet, View, ViewComponent, TouchableOpacity, TextInput } fr
 import React, { Component } from 'react'
 import TextInput1 from '../components/TextInput';
 import ButtonPrincipal from '../components/ButtonPrincipal';
-
+import OnlyNumbers from   '../components/OnlyNumbers';
 
 
 export default function RegisterScreen(props) {
@@ -12,6 +12,12 @@ export default function RegisterScreen(props) {
    const goToLogin = () => {
         console.log("Navegando a Login");
         navigation.navigate("Login");
+    };
+
+    const handleChange = (text) => {
+    // Solo permitir números
+    const numericText = text.replace(/[^0-9]/g, '');
+    setValue(numericText);
     };
 
   return (
@@ -32,7 +38,7 @@ export default function RegisterScreen(props) {
       </View>
 
       <View style={{ paddingHorizontal: 30 ,marginTop:15}}>
-        <TextInput1 placeholder="Documento de identidad" />
+        <OnlyNumbers style={styles.Numerico} placeholder="Documento de identidad" />
       </View>
 
       <View style={{ paddingHorizontal: 30 ,marginTop:15}}>
@@ -128,6 +134,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#03045E',
   },
-     }
+     Numerico:{
+          height: 50,
+          borderColor: '#ccc',
+          borderWidth: 1,
+          borderRadius: 5,
+          paddingHorizontal: 10,
+          color: '#000',
+          backgroundColor: '#F7F8F9',
+        }
+      
+      }
 );
 

@@ -8,10 +8,18 @@ import {
   TouchableOpacity,
   StatusBar,
   useColorScheme,
+  navigation
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default function LoginScreen(props){
+
+  
+    
+       const goToRegister = () => {
+            console.log("Navegando a Registro");
+            navigation.navigate("Register");
+        };
     
     const isDarkMode = useColorScheme() === 'dark';
     const backgroundStyle = {
@@ -152,7 +160,6 @@ export default function LoginScreen(props){
            <View style={{marginTop: 320,alignItems: 'center', flexDirection: 'row',   justifyContent: 'center'}}>     
            <Text style={{ color: isDarkMode ? '#fff' : '#03045E', fontWeight: 'bold'}}>No tenes cuenta?</Text>
             <TouchableOpacity
-                   onPress={() => console.log('Registrate ahora')}
                    style={{
                      height: 20,
                      width:115,
@@ -164,7 +171,8 @@ export default function LoginScreen(props){
                      alignItems: 'center',
      
                    }}
-                 >
+                    onPress={goToRegister}>
+
                    <Text style={{ color: isDarkMode ? '#0077B6' : '#0077B6' , fontWeight: 'bold',}}>Registrate ahora</Text>
            </TouchableOpacity>
            </View>

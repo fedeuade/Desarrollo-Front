@@ -30,9 +30,15 @@ export default function PasswordUpdateScreen(props) {
     
           <Text style={{color:'#888',paddingHorizontal:42,marginTop:10,fontSize:15}}>Su contraseña ha sido cambiada exitosamente</Text>
          
-            <View style={{marginTop:30,paddingHorizontal:30}}>
-              <ButtonPrincipal text="Volver a iniciar sesion"/>
-            </View>
+              <View style={{marginTop:30,paddingHorizontal:30}}>
+                          <TouchableOpacity
+                                 style={[styles.ButtonProfesional, {backgroundColor: '#03045E'}]}
+                                 onPress={goToLogin}>
+                          
+                             <Text style={{ color: '#fff' }}>Volver al Inicio</Text>
+                         </TouchableOpacity>
+                         </View>
+            
     
             
         </View>
@@ -50,5 +56,13 @@ export default function PasswordUpdateScreen(props) {
         textAlign: 'center',
         color: '#03045E',
       },
+       ButtonProfesional:{
+          height: 50,
+          borderRadius: 8,
+          paddingHorizontal: 10,
+          justifyContent: 'center',
+          alignItems: 'center',
+           
+        },
          }
 );
