@@ -1,54 +1,98 @@
-import { Text, StyleSheet, View, ViewComponent, TouchableOpacity } from 'react-native'
-import React, { Component } from 'react'
-import TextInput1 from '../components/TextInput';
-import ButtonPrincipal from '../components/ButtonPrincipal';
+import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons'; // Asegurate de tener react-native-vector-icons instalado
 
-
-
-export default function EmptyShiftScreen(props) {
-  
-  const{navigation}=props;
-
-   const goToLogin = () => {
-        console.log("Navegando a Login");
-        navigation.navigate("Login");
-    };
+export default function ProfileScreen({ navigation }) {
+  const goToLogin = () => {
+    navigation.navigate("Login");
+  };
 
   return (
-    <View style={{backgroundColor:'white'}}>
-    
-    <View style={{marginTop:40, paddingHorizontal:20}}>
-        <Text style={styles.BluePrincipal}>Turnos Reservados</Text>
+
+    <View style={styles.container}>
+      <Text style={styles.title}>Mi Perfil</Text>
+
+      {/* Sección Cuenta */}
+      <Text style={styles.sectionTitle}>Cuenta</Text>
+
+      <View style={styles.row}>
+        <Icon name="person-circle-outline" size={50} color="#6c757d" />
+        <Text style={styles.label}>Nombre usuario</Text>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.arrow}>{'>'}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.row}>
+        <Icon name="medkit-outline" size={50} color="#03045E" />
+        <Text style={styles.label}>Obra Social</Text>
+        <TouchableOpacity style={styles.button}>
+          <View style={{alignItems:'right'}}>
+          <Text style={styles.arrow}>{'>'}</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      {/* Sección Configuración */}
+      <Text style={[styles.sectionTitle, { marginTop: 50 }]}>Configuración</Text>
+
+      <View style={styles.row}>
+        <Text style={styles.label}>Cerrar sesión</Text>
+        <TouchableOpacity style={styles.button} onPress={goToLogin}>
+          <Text style={styles.arrow}>{'>'}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.row}>
+        <Text style={styles.label}>Eliminar cuenta</Text>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.arrow}>{'>'}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-
-      <View style={{marginTop: 70, alignItems: 'right' }}>
-
-      
-      <View/>
-
-      <Text style={{color:'#888',paddingHorizontal:30,marginTop:10,fontSize:15, textAlign:'center'}}>No tienes turnos reservados</Text>
-      
-        <View style={{marginTop:80,paddingHorizontal:30}}>
-          <ButtonPrincipal text="Reservar turno"/>
-        </View>
-
-      
-             
-    </View>
-    </View>
-
   );
 }
 
 const styles = StyleSheet.create({
-  BluePrincipal: {
-    fontSize: 30,
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingTop: 100,
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontSize: 28,
     fontWeight: 'bold',
-    width: 400,
-    height: 45,
-    textAlign: 'left',
+    color: '#03045E',
+    marginBottom: 20,
+    paddingBottom: 10,
+  },
+  sectionTitle: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#03045E',
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 25,
+  },
+  label: {
+    paddingHorizontal:20,
+    fontSize: 20,
+    color: '#03045E',
+    marginLeft: 10,
+  },
+  button: {
+    backgroundColor: '#F8F9FA',
+    padding: 8,
+    borderRadius: 10,
+    elevation: 3,
+  },
+  arrow: {
+    fontSize: 25,
     color: '#03045E',
   },
-     }
-);
-
+});

@@ -28,10 +28,12 @@ export default function CreateNewPasswordScreen(props) {
            <View style={{ paddingHorizontal: 30 ,marginTop:20}}>
             <TextInput1 placeholder="Confirma nueva contraseña" />
           </View>
-            <View style={{marginTop:30,paddingHorizontal:30}}>
-              <ButtonPrincipal text="Restablecer contraseña"/>
+            <View style={{ marginTop: 30, paddingHorizontal: 30 }}>
+                <ButtonPrincipal 
+                   text="Confirmar" 
+                    onPress={() => navigation.navigate("PasswordUpdate")} 
+                      />
             </View>
-    
             
         </View>
         </View>

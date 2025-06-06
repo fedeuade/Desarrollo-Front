@@ -27,8 +27,11 @@ export default function ForgetPasswordScreen(props) {
       <View style={{ paddingHorizontal: 30 ,marginTop:20}}>
         <TextInput1 placeholder="Correo electrónico" />
       </View>
-        <View style={{marginTop:30,paddingHorizontal:30}}>
-          <ButtonPrincipal text="Enviar código"/>
+      <View style={{ marginTop: 30, paddingHorizontal: 30 }}>
+          <ButtonPrincipal 
+            text="Enviar código" 
+            onPress={() => navigation.navigate("EnterCode")} 
+          />
         </View>
 
         <View style={{marginTop: 320,alignItems: 'center', flexDirection: 'row', paddingHorizontal:75}}>     
