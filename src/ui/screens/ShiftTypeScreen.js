@@ -2,7 +2,6 @@ import { Text, StyleSheet, View, ViewComponent, TouchableOpacity,Image } from 'r
 import React, { Component } from 'react'
 import TextInput1 from '../components/TextInput';
 import ButtonPrincipal from '../components/ButtonPrincipal';
-import medico from '../images/medico.png';
 
 
 
@@ -23,20 +22,21 @@ export default function EmptyShiftScreen(props) {
 
 
   return (
-    <View style={{backgroundColor:'white', marginTop:120,alignItems:'center'}}>
+    <View style={{backgroundColor:'white', marginTop:80,alignItems:'center'}}>
     
     <View style={{marginTop:40, paddingHorizontal:20}}>
         <Text style={styles.BluePrincipal}> Buscar turno por</Text>
     </View>
 
-      <View style={{marginTop: 20, alignItems: 'right' }}>
-
-      
+      <View style={{marginTop: 20,paddingHorizontal:20}}>
+            <Image
+          source={require('../images/medico.png')}
+          style={styles.image}
+        />
       <View/>
 
       <Text style={{color:'#888',paddingHorizontal:30,fontSize:15, textAlign:'center'}}>Seleccion cómo quieres buscar tu turno medico</Text>
 
-        <Image source={require('../images/medico.png')} style={styles.image}  />
       
     <View style={{marginTop:10,paddingHorizontal:30}}>
        <TouchableOpacity

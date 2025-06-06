@@ -1,39 +1,63 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  FlatList,
+  StyleSheet,
+  Keyboard,
+} from 'react-native';
 
-const Deployed1 = ({ placeholder, options = [] }) => {
+const Deployed1 = ({ placeholder, options = [], onSelect, value }) => {
   const [input, setInput] = useState('');
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener('keyboardDidHide', () => {
+      setShowDropdown(false);
+    });
+    return () => showSubscription.remove();
+  }, []);
+
   const handleInputChange = (text) => {
     setInput(text);
-    const filtered = options.filter((option) =>
-      option.toLowerCase().includes(text.toLowerCase())
-    );
-    setFilteredOptions(filtered);
+    if (!text) {
+      setFilteredOptions(options);
+    } else {
+      const filtered = options.filter((option) =>
+        option.toLowerCase().includes(text.toLowerCase())
+      );
+      setFilteredOptions(filtered);
+    }
     setShowDropdown(true);
   };
 
   const handleSelect = (option) => {
     setInput(option);
     setShowDropdown(false);
+    onSelect?.(option);
   };
 
   return (
     <View style={styles.container}>
       <TextInput
-        value={input}
+        value={input || value}
         placeholder={placeholder}
         placeholderTextColor="#888"
         onChangeText={handleInputChange}
-        onFocus={() => setShowDropdown(true)}
+        onFocus={() => {
+          setFilteredOptions(options);
+          setShowDropdown(true);
+        }}
         style={styles.input}
       />
 
       {showDropdown && filteredOptions.length > 0 && (
         <View style={styles.dropdown}>
           <FlatList
+            keyboardShouldPersistTaps="handled"
             data={filteredOptions}
             keyExtractor={(item, index) => `${item}-${index}`}
             renderItem={({ item }) => (
@@ -74,7 +98,7 @@ const styles = StyleSheet.create({
     maxHeight: 150,
   },
   item: {
-    padding: 10,
+    padding: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },

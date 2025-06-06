@@ -1,4 +1,9 @@
-import React, { Component, useState } from 'react'
+import { Alert } from 'react-native'
+import React, { useState ,Component} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+import { loginUser } from './userApi'; 
 import {
   Text,
   View,
@@ -69,7 +74,28 @@ export default function LoginScreen(props){
         console.log("Navegando a ForgetPassword");
         navigation.navigate("ForgetPassword");
     };
+const handleLogin = async () => {
 
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await loginUser(data);
+      console.log("Login exitoso:", response);
+
+      await AsyncStorage.setItem('token', response.authToken);
+
+      
+      Alert.alert("Éxito", "Usuario Logeado correctamente", [
+        { text: "OK", onPress: () => navigation.navigate("EmptyShift") }
+        
+      ] );
+    } catch (error) {
+      console.error("Error al registrar:", error);
+    }
+  };
     return (
          <View style={{
                  backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -119,7 +145,7 @@ export default function LoginScreen(props){
            </View>
             <View style={{ marginTop: 30 }}>
                <TouchableOpacity
-                   onPress={() => console.log('Iniciar sesion')}
+                  onPress={handleLogin}
                    style={{
                      height: 50,
                      borderColor: '#ccc',

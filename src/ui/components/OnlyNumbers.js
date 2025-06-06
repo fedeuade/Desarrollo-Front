@@ -6,7 +6,7 @@ export default function SoloNumerosInput({ placeholder }) {
 
   const handleChange = (text) => {
     const soloNumeros = text.replace(/[^0-9]/g, '');
-    setValue(soloNumeros);
+    setValue(soloNumeros); 
   };
 
   return (
@@ -14,9 +14,9 @@ export default function SoloNumerosInput({ placeholder }) {
       style={styles.Numerico}
       placeholder={placeholder}
       placeholderTextColor="#888"
-      keyboardType="numeric"       
+      keyboardType="numeric"
       value={value}
-      onChangeText={handleChange}  
+      onChangeText={handleChange}
     />
   );
 }
