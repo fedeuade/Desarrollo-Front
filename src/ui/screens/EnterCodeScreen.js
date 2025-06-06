@@ -25,8 +25,12 @@ export default function EnterCodeScreen(props) {
           <View style={{ paddingHorizontal: 30 ,marginTop:20}}>
             <TextInput1 placeholder="Código" />
           </View>
-            <View style={{marginTop:30,paddingHorizontal:30}}>
-              <ButtonPrincipal text="Confirmar"/>
+           
+           <View style={{ marginTop: 30, paddingHorizontal: 30 }}>
+              <ButtonPrincipal 
+                text="Confirmar" 
+                onPress={() => navigation.navigate("CreateNewPassword")} 
+              />
             </View>
     
             <View style={{marginTop: 320,alignItems: 'center', flexDirection: 'row', paddingHorizontal:75}}>     
