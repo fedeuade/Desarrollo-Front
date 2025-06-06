@@ -1,11 +1,13 @@
 import { View, Text,TouchableOpacity } from 'react-native'
 import React from 'react'
 
-export default function ButtonPrincipal({text}) {
+export default function ButtonPrincipal({text,onPress}) {
   return (
     <View>
         
       <TouchableOpacity
+                        onPress={onPress}
+
                          style={{
                            height: 50,
                            borderColor: '#ccc',
