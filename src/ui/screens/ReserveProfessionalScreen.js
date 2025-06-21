@@ -16,22 +16,64 @@ export default function ReserveProfessionalScreen(props) {
   const{navigation}=props;
   const [doctor, setDoctor] = useState('');
 
-   useEffect(() => {
-       const fetchData = async () => {
-         try {
-           const response = await getAllDoctors();
-           const formatted = response.data.map(
-             (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
-           );
-           setDoctor(formatted);
-   
-         } catch (error) {
-           console.error('Error al obtener doctores:', error);
-         }
-       };
-   
-       fetchData();
-     }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getAllDoctors();
+        const formatted = response.data.map(
+          (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
+        );
+        setDoctor(formatted);
+
+      } catch (error) {
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleDoctorSelect = (doctor) => {
+    setSelectedDoctor(doctor);
+ 
+  };
+
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+    // Opcional: actualizar horas disponibles si quieres
+  };
+
+  const handleTimeSelect = (time) => {
+    setSelectedTime(time);
+  };
+
+  const handleReserve = async () => {
+    // Debug: logueamos para ver qué valores tienen los estados
+    console.log('selectedDoctor:', selectedDoctor);
+    console.log('selectedDate:', selectedDate);
+    console.log('selectedTime:', selectedTime);
+
+       const appointmentRequest = {
+        date: selectedDate,
+        time: selectedTime,
+      };
+
+  
+      try {
+      await createAppointmentByDoctor(selectedDoctor, appointmentRequest);
+      Alert.alert(
+        'Éxito',
+        'Turno reservado correctamente',
+        [
+          { text: 'OK', onPress: () => navigation.navigate('SuccessfulReservation') }
+        ]
+      );
+    } catch (error) {
+      console.error('Error al reservar turno:', error);
+      Alert.alert('Error', 'No se pudo reservar el turno');
+    }
+  };
+  
 
   return (
     <View style={{backgroundColor:'white'}}>
@@ -43,10 +85,16 @@ export default function ReserveProfessionalScreen(props) {
       <View/>
 
       <View style={{paddingHorizontal: 30 ,marginTop:20}}>
-        <Deployed1
-          placeholder="Doctor"
-          options={['Dr. Carlos Martínez', 'Dra. Torres', 'Dr. Pedro Fernández', 'Dra. Lucía Pérez']}
-        />      
+         <View style={{ paddingHorizontal: 30, marginTop: 20 }}>
+          <Deployed1
+            placeholder="Doctor"
+            options={doctor}
+            onSelect={handleDoctorSelect}
+            selected={selectedDoctor}
+            value={setSelectedDoctor}
+
+          />
+        </View>
         </View>
 
       <View style={{ paddingHorizontal: 30 ,marginTop:20}}>

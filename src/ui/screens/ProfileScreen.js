@@ -1,11 +1,16 @@
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'; // Asegurate de tener react-native-vector-icons instalado
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ProfileScreen({ navigation }) {
   const goToLogin = () => {
-    navigation.navigate("Login");
-  };
+    AsyncStorage.clear();
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' }],
+    });  };
+
 
   return (
 

@@ -23,7 +23,6 @@ export default function ShiftInfoScreen(props) {
 
       <Text style={styles.BluePrincipalSmall}>{date}</Text>
       <Text style={styles.BluePrincipalSmall}>{time}</Text>
-      <Text style={styles.BluePrincipalSmall}>Estado: Finalizado</Text>
 
     </View>
     <View style={{marginTop:60, paddingHorizontal:20}}>
