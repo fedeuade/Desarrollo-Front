@@ -1,6 +1,6 @@
 import { Text, StyleSheet, View, TouchableOpacity, TextInput, Alert } from 'react-native';
 import React, { useState } from 'react';
-import { registerUser } from './userApi'; // Importación correcta
+import { registerUser } from './userApi'; 
 
 export default function RegisterScreen(props) {
   const { navigation } = props;

@@ -10,10 +10,7 @@ export default function ShiftHistoryScreen(props) {
   
   const{navigation}=props;
 
-   const goToLogin = () => {
-        console.log("Navegando a Login");
-        navigation.navigate("Login");
-    };
+  
 
   return (
     <View style={{backgroundColor:'white'}}>

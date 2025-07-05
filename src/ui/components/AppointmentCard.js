@@ -11,6 +11,7 @@ export default function AppointmentCard({ image, date, time, doctor, specialty }
       time,
       doctor,
       specialty,
+      image
     }); // podés enviar los datos si los necesitás en la otra screen
   };
 

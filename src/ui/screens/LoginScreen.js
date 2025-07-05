@@ -88,7 +88,7 @@ const handleLogin = async () => {
       await AsyncStorage.setItem('token', response.authToken);
 
       
-      Alert.alert("Éxito", "Usuario Logeado correctamente", [
+      Alert.alert("Éxito", "Usuario Logeado correctamente",[ 
         { text: "OK", onPress: () => navigation.navigate("EmptyShift") }
         
       ] );
