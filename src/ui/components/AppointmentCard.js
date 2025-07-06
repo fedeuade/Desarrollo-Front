@@ -34,7 +34,7 @@ export default function AppointmentCard({ image, date, time, doctor, specialty }
 
 const styles = StyleSheet.create({
   card: {
-    marginTop: 70,
+    marginTop: 10,
     marginHorizontal: 20,
     padding: 10,
     borderColor: '#E0E0E0',

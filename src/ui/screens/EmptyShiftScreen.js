@@ -3,23 +3,39 @@ import React, { useEffect, useState } from 'react';
 import AppointmentCard from '../components/AppointmentCard';
 import { getAppointments} from './appointmentApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback } from 'react';
 
 export default function EmptyShiftScreen({ navigation }) {
   const [appointments, setAppointments] = useState([]);
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      const token = await AsyncStorage.getItem("token"); // suponiendo que guardás el token así
-      try {
-        const data = await getAppointments(token);
-        setAppointments(data);
-      } catch (error) {
-        console.error("Error cargando historial de turnos:", error);
-      }
-    };
+  useFocusEffect(
 
+  useCallback(() => {
+
+    const fetchAppointments = async () => {
+
+      const token = await AsyncStorage.getItem("token");
+
+      try {
+
+        const data = await getAppointments(token);
+
+        setAppointments(data);
+
+      } catch (error) {
+
+        console.error("Error cargando historial de turnos:", error);
+
+      }
+
+    };
+ 
     fetchAppointments();
-  }, []);
+
+  }, [])
+
+);
 
   const renderItem = ({ item }) => (
     <AppointmentCard
@@ -37,21 +53,24 @@ export default function EmptyShiftScreen({ navigation }) {
         <Text style={styles.BluePrincipal}>Turnos Reservados</Text>
       </View>
 
-      <View style={{ marginTop: 30, paddingHorizontal: 20 }}>
+      <View style={{ marginTop: 10, paddingHorizontal: 20 }}>
         {appointments.length === 0 ? (
           <Text style={{ color: '#888', marginTop: 20, fontSize: 15, textAlign: 'center' }}>
             No tienes turnos reservados
           </Text>
         ) : (
+      <View style={styles.listContainer}>
           <FlatList
             data={appointments}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
           />
+        </View>
+
         )}
       </View>
 
-      <View style={{ marginTop: 0, paddingHorizontal: 30 }}>
+      <View style={{ marginTop: 10, paddingHorizontal: 30 }}>
         <TouchableOpacity
           style={[styles.ButtonProfesional, { backgroundColor: '#03045E' }]}
           onPress={() => navigation.navigate("ShiftType")}
@@ -79,4 +98,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  listContainer: {
+    height: 500,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    padding: 10,
+  }
 });

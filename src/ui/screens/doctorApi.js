@@ -30,5 +30,5 @@ export const filterDoctors = async (filterBody, token) => {
 
 // Obtener todos los doctores (no requiere autorización)
 export const getAllDoctors = async () => {
-  return await axios.get(`${API_URL}/all`);
+  return await axios.get(`${BASE_URL}/all`);
 };
