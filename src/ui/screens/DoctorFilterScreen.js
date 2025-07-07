@@ -57,7 +57,7 @@ export default function DoctorFilterScreen({ navigation, route }) {
       {/* Botón atrás */}
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <View style={styles.backRect}>
-          <Text style={styles.backArrow}>←</Text>
+          <Text style={styles.backArrow}>{'<'}</Text>
         </View>
       </TouchableOpacity>
 
@@ -107,14 +107,10 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   backRect: {
-    width: 41,
-    height: 41,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#E8ECF4',
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#F8F9FA',
+    padding: 8,
+    borderRadius: 10,
+    elevation: 3,
   },
   backArrow: {
     color: '#03045E',

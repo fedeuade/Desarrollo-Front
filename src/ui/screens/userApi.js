@@ -3,12 +3,12 @@ import axios from 'axios';
 const BASE_URL = 'http://10.0.2.2:8080/api';
 
 export const registerUser = async (data) => {
-  const response = await axios.post(`${BASE_URL}/user/create`, data);
+  const response = await axios.post(`${BASE_URL}/create`, data);
   return response.data;
 };
 
 export const loginUser = async (data) => {
-  const response = await axios.post(`${BASE_URL}/user/login`, data);
+  const response = await axios.post(`${BASE_URL}/login`, data);
   return response.data;
 };
 
@@ -36,6 +36,11 @@ export const getInsurance = async (token) => {
   const response = await axios.get(`${BASE_URL}/insurance/get`, {
     headers: { Authorization: token },
   });
+  return response.data;
+};
+
+export const getCompanies = async () => {
+  const response = await axios.get(`${BASE_URL}/companies`);
   return response.data;
 };
 

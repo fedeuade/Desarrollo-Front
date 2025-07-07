@@ -8,7 +8,7 @@ import {
   FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { searchDoctor } from '../UI/doctorApi';
+import { searchDoctor } from '../screens/doctorApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DoctorCard from '../components/DoctorCard';
 
