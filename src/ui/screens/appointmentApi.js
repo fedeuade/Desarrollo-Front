@@ -70,11 +70,11 @@ export const getResultImage = async (appointmentId) => {
 };
 
 export const getSpecialties = async () => {
-  return axios.get(`http://10.0.2.2:8080/api/appointment/specialties`);
+  return axios.get(`${BASE_URL}/specialties`);
 };
 
 
 export const createAppointmentBySpecialty = async ( specialty,appointmentData) => {
   const headers = await getAuthHeaders();
-  return axios.post(`http://10.0.2.2:8080/api/appointment/create/${specialty}`, appointmentData, headers);
+  return axios.post(`${BASE_URL}/create/${specialty}`, appointmentData, headers);
 };
