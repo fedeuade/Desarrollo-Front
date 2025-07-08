@@ -135,7 +135,7 @@ export default function DoctorList({
 
 /* 🎨 Estilos */
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', padding: 24 },
+  container: { marginTop:100, backgroundColor: '#fff', padding: 24 },
   header: {
     fontSize: 28,
     fontWeight: '700',

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://10.0.2.2:8080/api/doctor';
+const BASE_URL = 'https://desarrollo-backend-production.up.railway.app/api/doctor';
 
 const authHeader = (token) => ({
   headers: {

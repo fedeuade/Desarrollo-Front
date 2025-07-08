@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://10.0.2.2:8080/api';
+const BASE_URL = 'https://desarrollo-backend-production.up.railway.app/api/user';
 
 export const registerUser = async (data) => {
   const response = await axios.post(`${BASE_URL}/create`, data);
@@ -52,6 +52,12 @@ export const deleteUser = async (token) => {
 
 export const editUser = async (data, token) => {
   await axios.put(`${BASE_URL}/edit`, data, {
+    headers: { Authorization: token },
+  });
+};
+
+export const getUser = async (token) => {
+  await axios.get(`${BASE_URL}/get-user`,{
     headers: { Authorization: token },
   });
 };

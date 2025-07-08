@@ -30,8 +30,10 @@ export default function DoctorListScreen({ navigation }) {
 
   if (!doctors) {
     return (
+      <View style={{marginTop:20}}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="#0077B6" />
+      </View>
       </View>
     );
   }
@@ -45,5 +47,6 @@ export default function DoctorListScreen({ navigation }) {
       setDoctors={setDoctors}
       setSelectedFilter={setSelectedFilter}
     />
+
   );
 }

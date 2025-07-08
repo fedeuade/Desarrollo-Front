@@ -4,14 +4,18 @@ import DoctorScreen from '../ui/screens/DoctorScreen';
 import ShiftInfoScreen from '../ui/screens/ShiftInfoScreen';
 import ShiftHistoryScreen from '../ui/screens/ShiftHistoryScreen';
 import InsuranceScreen from '../ui/screens/InsuranceScreen';
+import ProfileScreen from '../ui/screens/ProfileScreen';
+import AccountInfoScreen from '../ui/screens/AccountInfoScreen';
 
 const Stack = createNativeStackNavigator();
 
-export default function DoctorStack() {
+export default function ProfileStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="ShiftHistory" component={ShiftHistoryScreen} />
-      <Stack.Screen name="ShiftInfoScreen" component={ShiftInfoScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Insurance" component={InsuranceScreen} />
+      <Stack.Screen name="AccountInfo" component={AccountInfoScreen}   />
+
 
     </Stack.Navigator>
   );

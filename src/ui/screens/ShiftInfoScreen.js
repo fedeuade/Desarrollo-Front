@@ -11,6 +11,7 @@ export default function ShiftInfoScreen(props) {
   
   const route = useRoute();
   const { date, time, doctor, specialty,image } = route.params;
+  const{navigation}=props;
 
   return (
     <View style={{backgroundColor:'white',alignContent:'center', justifyContent:'center',flex:1,}}>

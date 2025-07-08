@@ -16,6 +16,9 @@ import ReserveSpecialityScreen from '../ui/screens/ReserveSpecialityScreen';
 import ShiftCancelScreen from '../ui/screens/ShiftCancelScreen';
 import ReserveProfessionalScreen from '../ui/screens/ReserveProfessionalScreen';
 import SuccessfulReservationScreen from '../ui/screens/SuccessfulReservationScreen';
+import InsuranceScreen from "../ui/screens/InsuranceScreen";
+import DoctorListScreen from "../ui/screens/DoctorListScreen";
+import AccountInfoScreen from "../ui/screens/AccountInfoScreen";
 
 const Drawer = createDrawerNavigator()
 
@@ -39,6 +42,9 @@ export default function NavigationDrawer(){
             <Drawer.Screen name="ShiftCancel" component={ShiftCancelScreen} />
             <Drawer.Screen name="ReserveProfessional" component={ReserveProfessionalScreen} />
             <Drawer.Screen name="SuccessfulReservation" component={SuccessfulReservationScreen} />
+            <Drawer.Screen name="InsuranceScreen" component={InsuranceScreen} />
+            <Drawer.Screen name="DoctorList" component={DoctorListScreen}   />
+            <Drawer.Screen name="AccountInfo" component={AccountInfoScreen}   />
 
             
         </Drawer.Navigator>

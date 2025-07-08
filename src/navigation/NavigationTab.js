@@ -10,6 +10,10 @@ import ShiftHistoryScreen from "../ui/screens/ShiftHistoryScreen";
 import ProfileScreen from "../ui/screens/ProfileScreen";
 import ShiftInfoScreen from  '../ui/screens/ShiftInfoScreen';
 import ShiftHistoryStack from "./ShiftHistoryStack";
+import InsuranceScreen from "../ui/screens/InsuranceScreen";
+import ProfileStack from "./ProfileStack";
+import DoctorListScreen from "../ui/screens/DoctorListScreen";
+import DoctorListStack from "./DoctorListStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -60,8 +64,9 @@ export default function NavigationTab() {
     
       <Tab.Screen name="EmptyShift" component={EmptyShiftStack} />
       <Tab.Screen name="ShiftHistory" component={ShiftHistoryStack} />
-      <Tab.Screen name="Doctor" component={DoctorScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Doctor" component={DoctorListStack} />
+      <Tab.Screen name="Profile" component={ProfileStack} />
+
 
     </Tab.Navigator>
   );

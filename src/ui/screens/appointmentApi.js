@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = 'http://10.0.2.2:8080/api/appointment';
+const BASE_URL = 'https://desarrollo-backend-production.up.railway.app/api/appointment';
 
 const getAuthHeaders = async () => {
   const token = await AsyncStorage.getItem('token');

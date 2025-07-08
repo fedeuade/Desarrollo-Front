@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, Component } from 'react';
 import {
   View,
   Text,
@@ -14,11 +14,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getInsurance, uploadInsurance, getCompanies } from '../screens/userApi';
 import Deployed1 from '../components/Deployed'; // Asegurate de que el path sea correcto
 
-export default function InsuranceScreen() {
-  const navigation = useNavigation();
+export default function InsuranceScreen(props) {
+
   const [company, setCompany] = useState('');
   const [affiliateNumber, setAffiliateNumber] = useState('');
   const [companiesList, setCompaniesList] = useState([]);
+  const{navigation}=props;
+
 
   // 📥 Traer lista de compañías al cargar pantalla
   useEffect(() => {
@@ -71,7 +73,6 @@ export default function InsuranceScreen() {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       {/* Botón atrás */}
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -87,12 +88,14 @@ export default function InsuranceScreen() {
         </Text>
 
         {/* 🔽 Obra Social con dropdown */}
+        
         <Deployed1
-          placeholder="Obra Social"
-          options={companiesList}
-          onSelect={setCompany}
-          value={company}
-        />
+            placeholder="Obra Social"
+            options={companiesList}
+            onSelect={(value) => setCompany(value)}
+            selected={company}
+          />
+        
 
         <TextInput
           style={styles.input}
@@ -116,7 +119,7 @@ const styles = StyleSheet.create({
 
   backButton: {
     position: 'absolute',
-    top: 43,
+    top: 33,
     left: 16,
     zIndex: 10,
   },
