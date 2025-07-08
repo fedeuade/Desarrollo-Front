@@ -1,15 +1,17 @@
 import { Text, StyleSheet, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
-import { getUser } from './userApi';
+import { editUser, getUser } from './userApi';
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
+
 
 
 export default function AccountInfoScreen({ navigation }) {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('example@gmail.com');
-  const [password, setPassword] = useState('********');
+  const [dni, setDni] = useState('');
 
  
    useFocusEffect(
@@ -19,18 +21,18 @@ export default function AccountInfoScreen({ navigation }) {
     const fetchuser = async () => {
 
       const token = await AsyncStorage.getItem("token");
-s
+
       try {
 
         const data = await getUser(token);
+        console.log("Usuario recibido:", data.dni);
 
         setName(data.name);
-        setEmail(data.email);
-
+        setDni(String(data.dni));
 
       } catch (error) {
 
-        console.error("Error cargando historial de turnos:", error);
+      
 
       }
 
@@ -44,9 +46,27 @@ s
 
 
 
- const handleUpdate = () => {
-    // Lógica para actualizar info de usuario
-  };
+ const handleUpdate = async () => {
+        if (!dni || dni.trim() === '' ||!name || name.trim() ) {
+        Alert.alert('Error', 'Los campos no pueden estar vacíos.');
+        return; 
+      }
+
+      try {
+        const token = await AsyncStorage.getItem("token");
+
+        const data = { name: name, dni: dni };
+        const response = await editUser(data, token);
+
+        
+        Alert.alert('Éxito', 'Datos actualizados correctamente');
+      } catch (error) {
+        console.error("Error confirmando cambios:", error);
+        Alert.alert('Error', 'No se pudieron guardar los cambios.');
+      }
+    };
+   
+  
 
 
 
@@ -80,24 +100,26 @@ s
           onChangeText={setName}
         />
 
-        <Text style={styles.label}>Correo electrónico</Text>
+        
+
+        <Text style={styles.label}>DNI</Text>
         <TextInput
           style={[styles.input, { color: '#03045E', fontWeight: '500' }]}
-          value={email}
-          editable={false}
+          value={dni}
+          onChangeText={setDni}
         />
 
-        <Text style={styles.label}>Contraseña</Text>
-        <TextInput
-          style={styles.input}
-          value={password}
-          secureTextEntry={true}
-          editable={false}
-        />
+       
       </View>
 
       {/* Botón Confirmar */}
-      <TouchableOpacity style={styles.button} onPress={handleUpdate}>
+     <TouchableOpacity
+          style={styles.button}
+          onPress={async () => {
+            await handleUpdate();
+           navigation.navigate("Profile");;
+          }}
+        >
         <Text style={styles.buttonText}>Confirmar Cambios</Text>
       </TouchableOpacity>
     </View>

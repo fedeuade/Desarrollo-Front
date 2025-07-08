@@ -20,17 +20,16 @@ const [appointments, setAppointments] = useState([]);
     const fetchAppointments = async () => {
 
       const token = await AsyncStorage.getItem("token");
-s
+
       try {
 
         const data = await getAppointmentHistory(token);
-
+        console.log(data)
         setAppointments(data);
 
       } catch (error) {
 
-        console.error("Error cargando historial de turnos:", error);
-
+      
       }
 
     };
@@ -44,11 +43,12 @@ s
 
   const renderItem = ({ item }) => (
       <AppointmentCard
-        image={require('../images/doctora.png')}
+        image={{ uri: `data:image/png;base64,${item.image}` }}
         date={item.date}
         time={item.time}
         doctor={item.doctor}
         specialty={item.specialty}
+        appointmentId={item.id}
       />
     );
   

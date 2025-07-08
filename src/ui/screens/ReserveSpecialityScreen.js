@@ -101,7 +101,6 @@ export default function ReserveSpecialityScreen({ navigation }) {
             options={specialties}
             onSelect={handleSpecialtySelect}
             selected={selectedSpecialty}
-            value={setSelectedSpecialty}
 
           />
         </View>

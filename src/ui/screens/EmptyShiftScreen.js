@@ -25,7 +25,7 @@ export default function EmptyShiftScreen({ navigation }) {
 
       } catch (error) {
 
-        console.error("Error cargando historial de turnos:", error);
+     
 
       }
 
@@ -37,16 +37,21 @@ export default function EmptyShiftScreen({ navigation }) {
 
 );
 
-  const renderItem = ({ item }) => (
+   const renderItem = ({ item }) => {
+  console.log("Imagen base64:", item.image?.substring(0, 30));
+console.log("Item completo:", item);
+
+  return (
     <AppointmentCard
-      image={require('../images/doctora.png')}
+      image={{ uri: `data:image/png;base64,${item.image}` }}
       date={item.date}
       time={item.time}
       doctor={item.doctor}
       specialty={item.specialty}
+      appointmentId={item.id}
     />
   );
-
+};
   return (
     <View style={{ backgroundColor: 'white', marginTop: 120 }}>
       <View style={{ marginTop: 40, paddingHorizontal: 20 }}>

@@ -19,6 +19,7 @@ import SuccessfulReservationScreen from '../ui/screens/SuccessfulReservationScre
 import InsuranceScreen from "../ui/screens/InsuranceScreen";
 import DoctorListScreen from "../ui/screens/DoctorListScreen";
 import AccountInfoScreen from "../ui/screens/AccountInfoScreen";
+import SuccessfulEditProfileScreen from "../ui/screens/SuccessfulEditProfileScreen";
 
 const Drawer = createDrawerNavigator()
 
@@ -45,6 +46,7 @@ export default function NavigationDrawer(){
             <Drawer.Screen name="InsuranceScreen" component={InsuranceScreen} />
             <Drawer.Screen name="DoctorList" component={DoctorListScreen}   />
             <Drawer.Screen name="AccountInfo" component={AccountInfoScreen}   />
+            <Drawer.Screen name="SuccessfulEditProfile" component={SuccessfulEditProfileScreen}   />
 
             
         </Drawer.Navigator>

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function AppointmentCard({ image, date, time, doctor, specialty }) {
+export default function AppointmentCard({ image, date, time, doctor, specialty,appointmentId }) {
   const navigation = useNavigation();
 
   const handlePress = () => {
@@ -11,7 +11,8 @@ export default function AppointmentCard({ image, date, time, doctor, specialty }
       time,
       doctor,
       specialty,
-      image
+      image,
+      appointmentId
     }); // podés enviar los datos si los necesitás en la otra screen
   };
 

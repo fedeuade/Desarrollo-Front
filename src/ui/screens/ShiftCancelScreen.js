@@ -12,11 +12,11 @@ export default function ShiftCancelScreen(props) {
 
    const goToShiftType = () => {
         console.log("Navegando a Login");
-        navigation.navigate("ShiftType");
+        navigation.navigate("EmptyShift");
     };
 
   return (
-    <View style={{backgroundColor:'white', alignItems:'center'}}>
+    <View style={{backgroundColor:'white', alignItems:'center',marginTop:120}}>
       
       <Image source={require('../images/cancel.png')} style={[styles.image, { marginTop: 120, alignItems:'center' }]} />
 

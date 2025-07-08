@@ -68,6 +68,7 @@ export default function DoctorList({
 
   /* Render de cada ítem */
   const renderItem = ({ item }) => {
+    console.log(item.image)
     const isOpen = expandedId === item.id;
     return (
       <View style={styles.cardWrapper}>

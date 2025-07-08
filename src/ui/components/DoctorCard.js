@@ -8,8 +8,11 @@ export default function DoctorCard({ doctor, onPress, isExpanded, onReserve }) {
       onPress={onPress ? () => onPress(doctor) : undefined}
       activeOpacity={onPress ? 0.7 : 1}
     >
-      <Image source={{ uri: doctor.imageUrl }} style={styles.avatar} />
-      <View style={styles.info}>
+        <Image
+          source={{ uri: `data:image/png;base64,${doctor.image}` }}
+          style={styles.avatar}
+        />      
+        <View style={styles.info}>
         <Text style={styles.name}>{doctor.name}</Text>
         <Text style={styles.specialty}>{doctor.specialties}</Text>
       </View>

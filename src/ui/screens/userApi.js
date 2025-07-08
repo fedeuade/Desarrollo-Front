@@ -51,13 +51,15 @@ export const deleteUser = async (token) => {
 };
 
 export const editUser = async (data, token) => {
-  await axios.put(`${BASE_URL}/edit`, data, {
+  const response = await axios.put(`${BASE_URL}/edit`, data, {
     headers: { Authorization: token },
   });
+  return response.data
 };
 
 export const getUser = async (token) => {
-  await axios.get(`${BASE_URL}/get-user`,{
+  const response = await axios.get(`${BASE_URL}/get-user`, {
     headers: { Authorization: token },
   });
+  return response.data;
 };

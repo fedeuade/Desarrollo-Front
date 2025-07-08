@@ -4,15 +4,11 @@ import TextInput1 from '../components/TextInput';
 import ButtonPrincipal from '../components/ButtonPrincipal';
 import checkgreen from '../images/checkgreen.png';
 
-export default function SuccessfulReservationScreen(props) {
+export default function SuccessfulEditProfileScreen(props) {
   
     const{navigation}=props;
     
-       const goToShiftType = () => {
-        console.log("Navegando a inicio");
-        navigation.navigate("EmptyShift");
-        };
-    
+       
       return (
         
         
