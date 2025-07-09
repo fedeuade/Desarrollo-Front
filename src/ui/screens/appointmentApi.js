@@ -63,12 +63,7 @@ export const uploadResultImage = async (appointmentId, file) => {
 
 export const getResultImage = async (appointmentId) => {
   const headers = await getAuthHeaders(); // esto devuelve { Authorization: 'Bearer ...' }
-  return axios.get(`${BASE_URL}/result/${appointmentId}`, {
-    headers: {
-      ...headers,
-    },
-    responseType: 'text', // si el backend ya te manda base64 como string plano
-  });
+  return axios.get(`${BASE_URL}/result/${appointmentId}`, headers);
 };
 
 export const getSpecialties = async () => {
