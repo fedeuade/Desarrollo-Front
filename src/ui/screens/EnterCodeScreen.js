@@ -6,6 +6,11 @@ import { useState} from 'react';
 import { Alert} from 'react-native';
 import { validateCode } from './userApi';
 import { useRoute } from '@react-navigation/native';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  '',
+]);
 
 export default function EnterCodeScreen(props) {
   
@@ -30,7 +35,6 @@ export default function EnterCodeScreen(props) {
             navigation.navigate("CreateNewPassword",{email})            
             Alert.alert('Éxito', 'Codigo correcto');
           } catch (error) {
-            console.error("Error confirmando cambios:", error);
             Alert.alert('Error', 'Codigo invalido.');
           }
         };

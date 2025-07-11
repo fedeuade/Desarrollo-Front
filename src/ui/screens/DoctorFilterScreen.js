@@ -26,7 +26,6 @@ export default function DoctorFilterScreen({ navigation, route }) {
         const { data } = await getSpecialties();
         setSpecialties(data);
       } catch (err) {
-        console.error('Error al obtener especialidades:', err);
       }
     };
     fetchSpecialties();
@@ -48,7 +47,6 @@ export default function DoctorFilterScreen({ navigation, route }) {
       route.params.onFilter(data, selected);
       navigation.goBack();
     } catch (e) {
-      console.error('Error filtrando', e);
     }
   };
 

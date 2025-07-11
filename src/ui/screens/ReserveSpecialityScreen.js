@@ -85,7 +85,6 @@ export default function ReserveSpecialityScreen({ navigation }) {
       ]
     );
   } catch (error) {
-    console.error('Error al reservar turno:', error);
     Alert.alert('Error', 'No se pudo reservar el turno');
   }
 };

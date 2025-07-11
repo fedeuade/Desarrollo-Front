@@ -39,7 +39,6 @@ export default function CreateNewPasswordScreen(props) {
                     navigation.navigate("Login")            
                     Alert.alert('Éxito', 'Contraseña cambiada con exito');
                   } catch (error) {
-                    console.error("Error cambiando contraseña:", error);
                     Alert.alert('Error', 'Codigo invalido.');
                   }
                 };

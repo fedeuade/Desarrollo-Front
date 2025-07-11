@@ -43,7 +43,6 @@ export default function RegisterScreen(props) {
         { text: "OK", onPress: () => navigation.navigate("Login") }
       ]);
     } catch (error) {
-      console.error("Error al registrar:", error);
       Alert.alert("Error", error.response?.data?.message || "No se pudo registrar el usuario");
     }
   };

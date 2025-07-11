@@ -61,7 +61,6 @@ export default function AccountInfoScreen({ navigation }) {
         
         Alert.alert('Éxito', 'Datos actualizados correctamente');
       } catch (error) {
-        console.error("Error confirmando cambios:", error);
         Alert.alert('Error', 'No se pudieron guardar los cambios.');
       }
     };

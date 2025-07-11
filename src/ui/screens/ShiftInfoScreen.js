@@ -36,7 +36,6 @@ export default function ShiftInfoScreen(props) {
       await deleteAppointment({ id: appointmentId });
       navigation.goBack();
     } catch (error) {
-      console.error('Error al cancelar turno:', error);
       Alert.alert("Error", "No se pudo cancelar el turno");
     }
   };

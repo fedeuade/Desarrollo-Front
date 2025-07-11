@@ -29,11 +29,9 @@ const fetchInsurance = async () => {
       setCompany(data.company ?? '');
       setAffiliateNumber(data.affiliateNumber ?? '');
     } catch (e) {
-      console.error('Error al obtener insurance:', e);
     }
   };
 
-  // 📥 Traer lista de compañías al cargar pantalla
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
@@ -41,27 +39,21 @@ const fetchInsurance = async () => {
         const response = await getCompanies(token);
         setCompaniesList(response);
       } catch (e) {
-        console.error('Error al obtener compañías:', e);
       }
     };
 
     fetchCompanies();
-    fetchInsurance(); // 👈 Ejecutar también al montar el componente
+    fetchInsurance(); 
   }, []);
 
-  // 🔄 Traer info actual del usuario (cuando vuelve a foco)
-  
-  // ✅ Función reutilizable para cargar datos del usuario
-  
+ 
 
   useFocusEffect(
     useCallback(() => {
-      fetchInsurance(); // 👈 Reutilizar función
+      fetchInsurance(); 
     }, [])
   );
 
-
-  // 📤 Subir nueva info
   const handleUpdate = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -69,7 +61,6 @@ const fetchInsurance = async () => {
       await uploadInsurance(body, token);
       navigation.goBack();
     } catch (e) {
-      console.error('Error subiendo insurance:', e);
     }
   };
 
@@ -90,7 +81,7 @@ const fetchInsurance = async () => {
           Ingresá tu obra social y{'\n'}número de afiliado
         </Text>
 
-        {/* 🔽 Obra Social con dropdown */}
+        {/* Obra Social con dropdown */}
         
         <Deployed1
             placeholder="Obra Social"
