@@ -21,6 +21,17 @@ export default function InsuranceScreen(props) {
   const [companiesList, setCompaniesList] = useState([]);
   const{navigation}=props;
 
+const fetchInsurance = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (!token) return;
+      const data = await getInsurance(token);
+      setCompany(data.company ?? '');
+      setAffiliateNumber(data.affiliateNumber ?? '');
+    } catch (e) {
+      console.error('Error al obtener insurance:', e);
+    }
+  };
 
   // 📥 Traer lista de compañías al cargar pantalla
   useEffect(() => {
@@ -39,24 +50,16 @@ export default function InsuranceScreen(props) {
   }, []);
 
   // 🔄 Traer info actual del usuario (cuando vuelve a foco)
+  
+  // ✅ Función reutilizable para cargar datos del usuario
+  
+
   useFocusEffect(
     useCallback(() => {
       fetchInsurance(); // 👈 Reutilizar función
     }, [])
   );
 
-  // ✅ Función reutilizable para cargar datos del usuario
-  const fetchInsurance = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      if (!token) return;
-      const data = await getInsurance(token);
-      setCompany(data.company ?? '');
-      setAffiliateNumber(data.affiliateNumber ?? '');
-    } catch (e) {
-      console.error('Error al obtener insurance:', e);
-    }
-  };
 
   // 📤 Subir nueva info
   const handleUpdate = async () => {
@@ -92,7 +95,8 @@ export default function InsuranceScreen(props) {
         <Deployed1
             placeholder="Obra Social"
             options={companiesList}
-            onSelect={(value) => setCompany(value)}
+            value={company}
+            onSelect={setCompany}
             selected={company}
           />
         

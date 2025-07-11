@@ -17,7 +17,7 @@ export default function CancelScreen(props) {
     <View style={{backgroundColor:'white',alignContent:'center', justifyContent:'center',flex:1,}}>
      <View style={{alignItems: 'center'}}>
       {/* <Image source={{ uri: image }} style={styles.image} /> */}
-      <Image source={require('../images/doctora.png')} style={styles.image} />
+      <Image source={require('../images/doctora.png')} style={styles.image}  accessibilityRole="image" testID="doctor-image"/>
 
       <Text style={styles.BluePrincipal}>{doctor}</Text>
       <Text style={styles.BluePrincipalSmall}>{specialty}</Text>

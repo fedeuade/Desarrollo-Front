@@ -2,6 +2,7 @@ import { Text, StyleSheet, View, TouchableOpacity, Image,Modal, TouchableWithout
 import React,{useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'; // Asegurate de tener react-native-vector-icons instalado
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { deleteUser } from './userApi';
 
 export default function ProfileScreen({ navigation }) {
   const goToLogin = () => {
@@ -14,6 +15,17 @@ export default function ProfileScreen({ navigation }) {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  const handleDelete = async () => {
+      try {
+        const token= await AsyncStorage.getItem('token')
+        await deleteUser(token);
+        await AsyncStorage.clear();
+        goToLogin();
+      } catch (error) {
+        console.error('Error al cancelar turno:', error);
+        Alert.alert("Error", "No se pudo cancelar el turno");
+      }
+    };
   return (
 
     <View style={styles.container}>
@@ -74,7 +86,7 @@ export default function ProfileScreen({ navigation }) {
 
               <TouchableOpacity
                 style={styles.modalButton}
-                onPress={goToLogin}
+                onPress={handleDelete}
               >
                 <Text style={styles.modalButtonText}>Eliminar cuenta</Text>
               </TouchableOpacity>

@@ -63,7 +63,7 @@ export default function DoctorList({
   };
 
   const handleReserve = (doctor) => {
-    navigation.navigate('ShiftType', { doctor });
+    navigation.navigate('ReserveProfessional', { doctor });
   };
 
   /* Render de cada ítem */

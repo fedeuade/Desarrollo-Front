@@ -47,7 +47,7 @@ export default function AccountInfoScreen({ navigation }) {
 
 
  const handleUpdate = async () => {
-        if (!dni || dni.trim() === '' ||!name || name.trim() ) {
+        if (!dni || dni.trim() === '' ||!name || name.trim()  === '') {
         Alert.alert('Error', 'Los campos no pueden estar vacíos.');
         return; 
       }

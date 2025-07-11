@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import ButtonPrincipal from '../components/ButtonPrincipal';
 import { useRoute } from '@react-navigation/native';
 import { deleteAppointment, getResultImage } from './appointmentApi';
-import { Buffer } from 'buffer';
 
 export default function ShiftInfoScreen(props) {
   const route = useRoute();
@@ -17,33 +16,23 @@ export default function ShiftInfoScreen(props) {
   const turnoEsFuturo = turnoDate.setHours(0, 0, 0, 0) >= now.setHours(0, 0, 0, 0);
 
   const handleShowStudy = async () => {
-  try {
-    console.log("🔍 Buscando estudio para appointmentId:", appointmentId);
+    try {
 
-    const response = await getResultImage(appointmentId);
+      const response = await getResultImage(appointmentId);
 
-    console.log("✅ Respuesta recibida del backend:", response);
+      const imageUri = `data:image/png;base64,${response.data}`;
 
-    const imageUri = `data:image/png;base64,${response.data.imageBase64}`;
-    console.log("🖼 URI generada para imagen base64:", imageUri.substring(0, 100)); // mostramos solo el inicio
+      setStudyImage(imageUri);
+    } catch (error) {
 
-    setStudyImage(imageUri);
+    
 
-  } catch (error) {
-    console.error("❌ Error obteniendo estudio:", error);
-
-    if (error.response) {
-      console.log("📩 Error response data:", error.response.data);
-      console.log("📄 Status:", error.response.status);
+      Alert.alert('Error', 'No se pudo cargar la imagen del estudio.');
     }
-
-    Alert.alert('Error', 'No se pudo cargar la imagen del estudio.');
-  }
-};
+  };
 
   const handleCancel = async () => {
     try {
-      console.log("Cancelando turno con ID:", appointmentId);
       await deleteAppointment({ id: appointmentId });
       navigation.goBack();
     } catch (error) {
@@ -68,12 +57,19 @@ export default function ShiftInfoScreen(props) {
         </View>
       </View>
 
-      {/* Mostrar imagen del estudio si existe */}
+      {/* Mostrar imagen del estudio en pantalla completa */}
       {studyImage && (
-        <View style={{ alignItems: 'center', marginTop: 30 }}>
-          <Image source={{ uri: studyImage }} style={styles.studyImage} />
-        </View>
-      )}
+          <TouchableOpacity
+            style={styles.fullscreenOverlay}
+            onPress={() => setStudyImage(null)}
+          >
+            <Image
+              source={{ uri: studyImage }}
+              style={styles.fullscreenImage}
+              testID="fullscreen-image" // 👉 este es el identificador que usa el test
+            />
+          </TouchableOpacity>
+        )}
 
       {turnoEsFuturo && (
         <View style={{ marginTop: 30, paddingHorizontal: 50 }}>
@@ -108,12 +104,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 20,
   },
-  studyImage: {
-    width: 250,
-    height: 250,
-    borderRadius: 10,
-    resizeMode: 'contain',
-  },
   cancelButton: {
     backgroundColor: '#FF4D4D',
     paddingVertical: 14,
@@ -124,5 +114,21 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',
+  },
+  fullscreenOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 10,
+  },
+  fullscreenImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
 });
