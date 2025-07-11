@@ -17,6 +17,10 @@ import ReserveSpecialityScreen from '../ui/screens/ReserveSpecialityScreen';
 import ShiftCancelScreen from '../ui/screens/ShiftCancelScreen';
 import ReserveProfessionalScreen from '../ui/screens/ReserveProfessionalScreen';
 import SuccessfulReservationScreen from '../ui/screens/SuccessfulReservationScreen';
+import InsuranceScreen from '../ui/screens/InsuranceScreen';
+import DoctorListScreen from '../ui/screens/DoctorListScreen';
+import DoctorFilterScreen from '../ui/screens/DoctorFilterScreen';
+import AccountInfoScreen from '../ui/screens/AccountInfoScreen';
 
 const Stack= createNativeStackNavigator();
 
@@ -25,12 +29,12 @@ export default function NavigationStack(){
 return(
     <Stack.Navigator initialRouteName="Register">
 
-        <Stack.Screen name="Login" component={LoginScreen}/>
-        <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
-        <Stack.Screen name="EnterCode" component={EnterCodeScreen}/>
-        <Stack.Screen name="CreateNewPassword" component={CreateNewPasswordScreen}/>
-        <Stack.Screen name="PasswordUpdate" component={PasswordUpdateScreen}/>
-        <Stack.Screen name="Register" component={RegisterScreen}/>
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerTitle: '',headerBackVisible: false}}/>
+        <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} options={{ headerTitle: ''}}/>
+        <Stack.Screen name="EnterCode" component={EnterCodeScreen} options={{ headerTitle: ''}}/>
+        <Stack.Screen name="CreateNewPassword" component={CreateNewPasswordScreen} options={{ headerTitle: ''}}/>
+        <Stack.Screen name="PasswordUpdate" component={PasswordUpdateScreen} options={{ headerTitle: '',headerBackVisible: false}}/>
+        <Stack.Screen name="Register" component={RegisterScreen}  options={{ headerTitle: ''}}/>
 
 
         {/* Pantallas con tab */}
@@ -38,14 +42,17 @@ return(
       <Stack.Screen name="Doctor" component={NavigationTab}  options={{ headerShown: false }}  />
       <Stack.Screen name="ShiftHistory" component={NavigationTab}  options={{ headerShown: false }}  />
       <Stack.Screen name="Profile" component={NavigationTab}  options={{ headerShown: false }}  />
-      <Stack.Screen name="ShiftInfoScreen" component={ShiftInfoScreen} />
-    
-      <Stack.Screen name="ShiftType" component={ShiftTypeScreen} />
-      <Stack.Screen name="ReserveSpeciality" component={ReserveSpecialityScreen} />
-      <Stack.Screen name="ShiftCancel" component={ShiftCancelScreen} />
-      <Stack.Screen name="ReserveProfessional" component={ReserveProfessionalScreen} />
-      <Stack.Screen name="SuccessfulReservation" component={SuccessfulReservationScreen} />
+      <Stack.Screen name="ShiftInfoScreen" component={ShiftInfoScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="DoctorList" component={DoctorListScreen}   />
 
+      <Stack.Screen name="ShiftType" component={ShiftTypeScreen} options={{ headerTitle: ''}} />
+      <Stack.Screen name="ReserveSpeciality" component={ReserveSpecialityScreen} />
+      <Stack.Screen name="ShiftCancel" component={ShiftCancelScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="ReserveProfessional" component={ReserveProfessionalScreen} options={{ headerTitle: ''}}/>
+      <Stack.Screen name="SuccessfulReservation" component={SuccessfulReservationScreen}  options={{ headerShown: false }}/>
+      <Stack.Screen name="Insurance" component={InsuranceScreen}   />
+      <Stack.Screen name="DoctorFilter" component={DoctorFilterScreen}   />
+      <Stack.Screen name="AccountInfo" component={AccountInfoScreen}   />
 
 
 

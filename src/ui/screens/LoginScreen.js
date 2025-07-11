@@ -22,7 +22,6 @@ export default function LoginScreen(props){
   
     
        const goToRegister = () => {
-            console.log("Navegando a Registro");
             navigation.navigate("Register");
         };
     
@@ -71,7 +70,6 @@ export default function LoginScreen(props){
     const{navigation}=props;
     
     const goToForgetPassword = () => {
-        console.log("Navegando a ForgetPassword");
         navigation.navigate("ForgetPassword");
     };
 const handleLogin = async () => {
@@ -83,17 +81,16 @@ const handleLogin = async () => {
 
     try {
       const response = await loginUser(data);
-      console.log("Login exitoso:", response);
 
       await AsyncStorage.setItem('token', response.authToken);
 
       
-      Alert.alert("Éxito", "Usuario Logeado correctamente", [
+      Alert.alert("Éxito", "Usuario Logeado correctamente",[ 
         { text: "OK", onPress: () => navigation.navigate("EmptyShift") }
         
       ] );
     } catch (error) {
-      console.error("Error al registrar:", error);
+      Alert.alert("Error","Contraseña o usuario incorrecto")
     }
   };
     return (

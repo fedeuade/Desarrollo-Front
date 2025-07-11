@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://10.0.2.2:8080/api';
+const BASE_URL = 'https://desarrollo-backend-production.up.railway.app/api/user';
 
 export const registerUser = async (data) => {
-  const response = await axios.post(`${BASE_URL}/user/create`, data);
+  const response = await axios.post(`${BASE_URL}/create`, data);
   return response.data;
 };
 
 export const loginUser = async (data) => {
-  const response = await axios.post(`${BASE_URL}/user/login`, data);
+  const response = await axios.post(`${BASE_URL}/login`, data);
   return response.data;
 };
 
@@ -39,6 +39,11 @@ export const getInsurance = async (token) => {
   return response.data;
 };
 
+export const getCompanies = async () => {
+  const response = await axios.get(`${BASE_URL}/companies`);
+  return response.data;
+};
+
 export const deleteUser = async (token) => {
   await axios.delete(`${BASE_URL}/delete`, {
     headers: { Authorization: token },
@@ -46,7 +51,15 @@ export const deleteUser = async (token) => {
 };
 
 export const editUser = async (data, token) => {
-  await axios.put(`${BASE_URL}/edit`, data, {
+  const response = await axios.put(`${BASE_URL}/edit`, data, {
     headers: { Authorization: token },
   });
+  return response.data
+};
+
+export const getUser = async (token) => {
+  const response = await axios.get(`${BASE_URL}/get-user`, {
+    headers: { Authorization: token },
+  });
+  return response.data;
 };

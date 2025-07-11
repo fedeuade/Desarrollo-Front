@@ -9,8 +9,8 @@ export default function SuccessfulReservationScreen(props) {
     const{navigation}=props;
     
        const goToShiftType = () => {
-        console.log("Navegando a Login");
-        navigation.navigate("ShiftType");
+        console.log("Navegando a inicio");
+        navigation.navigate("EmptyShift");
         };
     
       return (
@@ -18,7 +18,7 @@ export default function SuccessfulReservationScreen(props) {
         
         <View style={{backgroundColor:'white'}}>
        
-          <View style={{marginTop: 130}}>
+          <View style={{marginTop: 180}}>
 
             <View style={{paddingHorizontal:100 }}>
                 <Image source={require('../images/checkgreen.png')} style={{ width: 200, height: 200}} />

@@ -1,47 +1,89 @@
-import { Text, StyleSheet, View, ViewComponent, TouchableOpacity } from 'react-native'
-import React, { Component } from 'react'
-import TextInput1 from '../components/TextInput';
-import ButtonPrincipal from '../components/ButtonPrincipal';
+import { Text, StyleSheet, View, TouchableOpacity, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import AppointmentCard from '../components/AppointmentCard';
+import { getAppointments} from './appointmentApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback } from 'react';
 
+export default function EmptyShiftScreen({ navigation }) {
+  const [appointments, setAppointments] = useState([]);
 
+  useFocusEffect(
 
-export default function EmptyShiftScreen(props) {
+  useCallback(() => {
 
-  const{navigation}=props;
+    const fetchAppointments = async () => {
 
-   const goToShiftType = () => {
-        console.log("Navegando a reserva por tipo");
-        navigation.navigate("ShhiftType");
+      const token = await AsyncStorage.getItem("token");
+
+      try {
+
+        const data = await getAppointments(token);
+
+        setAppointments(data);
+
+      } catch (error) {
+
+     
+
+      }
+
     };
+ 
+    fetchAppointments();
+
+  }, [])
+
+);
+
+   const renderItem = ({ item }) => {
+  console.log("Imagen base64:", item.image?.substring(0, 30));
+console.log("Item completo:", item);
 
   return (
-    <View style={{backgroundColor:'white', marginTop:120}}>
-    
-    <View style={{marginTop:40, paddingHorizontal:20}}>
+    <AppointmentCard
+      image={{ uri: `data:image/png;base64,${item.image}` }}
+      date={item.date}
+      time={item.time}
+      doctor={item.doctor}
+      specialty={item.specialty}
+      appointmentId={item.id}
+    />
+  );
+};
+  return (
+    <View style={{ backgroundColor: 'white', marginTop: 120 }}>
+      <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
         <Text style={styles.BluePrincipal}>Turnos Reservados</Text>
+      </View>
+
+      <View style={{ marginTop: 10, paddingHorizontal: 20 }}>
+        {appointments.length === 0 ? (
+          <Text style={{ color: '#888', marginTop: 20, fontSize: 15, textAlign: 'center' }}>
+            No tienes turnos reservados
+          </Text>
+        ) : (
+      <View style={styles.listContainer}>
+          <FlatList
+            data={appointments}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+
+        )}
+      </View>
+
+      <View style={{ marginTop: 10, paddingHorizontal: 30 }}>
+        <TouchableOpacity
+          style={[styles.ButtonProfesional, { backgroundColor: '#03045E' }]}
+          onPress={() => navigation.navigate("ShiftType")}
+        >
+          <Text style={{ color: '#fff' }}>Reservar Turno</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-
-      <View style={{marginTop: 90, alignItems: 'right' }}>
-
-      
-      <View/>
-
-      <Text style={{color:'#888',paddingHorizontal:30,marginTop:10,fontSize:15, textAlign:'center'}}>No tienes turnos reservados</Text>
-      
-      <View style={{marginTop:80,paddingHorizontal:30}}>
-             <TouchableOpacity
-                    style={[styles.ButtonProfesional, {backgroundColor: '#03045E'}]}
-                    onPress={() => navigation.navigate("ShiftType")} >
-      
-                < Text style={{ color: '#fff' }}>Reservar Turno</Text>
-            </TouchableOpacity>
-            </View>
-
-      
-             
-    </View>
-    </View>
-
   );
 }
 
@@ -54,14 +96,18 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#03045E',
   },
-   ButtonProfesional:{
-   height: 50,
-   borderRadius: 8,
-   paddingHorizontal: 10,
-   justifyContent: 'center',
-   alignItems: 'center',
-           
-        }     
-     }
-);
-
+  ButtonProfesional: {
+    height: 50,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  listContainer: {
+    height: 500,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    padding: 10,
+  }
+});

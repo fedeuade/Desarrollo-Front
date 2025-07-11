@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = 'http://10.0.2.2:8080/api/appointment';
+const BASE_URL = 'https://desarrollo-backend-production.up.railway.app/api/appointment';
 
 const getAuthHeaders = async () => {
   const token = await AsyncStorage.getItem('token');
@@ -17,10 +17,20 @@ export const createAppointment = async (appointmentData) => {
   return axios.post(`${BASE_URL}/create`, appointmentData, headers);
 };
 
-export const getAppointments = async () => {
-  const headers = await getAuthHeaders();
-  return axios.get(`${BASE_URL}/from-user`, headers);
+export const getAppointments = async (token) => {
+ const response = await axios.get(`${BASE_URL}/from-user`, {
+    headers: { Authorization: token },
+  });
+  return response.data;
 };
+
+export const getAppointmentHistory = async (token) => {
+  const response = await axios.get(`${BASE_URL}/history`, {
+    headers: { Authorization: token },
+  });
+  return response.data;
+};
+
 
 export const deleteAppointment = async (appointmentData) => {
   const headers = await getAuthHeaders();
@@ -52,41 +62,16 @@ export const uploadResultImage = async (appointmentId, file) => {
 };
 
 export const getResultImage = async (appointmentId) => {
-  const headers = await getAuthHeaders();
-  return axios.get(`${BASE_URL}/result/${appointmentId}`, {
-    ...headers,
-    responseType: 'arraybuffer', // o 'blob' si lo usás en web
-  });
+  const headers = await getAuthHeaders(); // esto devuelve { Authorization: 'Bearer ...' }
+  return axios.get(`${BASE_URL}/result/${appointmentId}`, headers);
 };
 
 export const getSpecialties = async () => {
-  return axios.get(`http://10.0.2.2:8080/api/appointment/specialties`);
+  return axios.get(`${BASE_URL}/specialties`);
 };
 
-export const getAvailableDates = async () => {
-  const headers = await getAuthHeaders();
-  return axios.get(`http://10.0.2.2:8080/api/appointment/date`, headers);
-};
-
-export const getAvailableTimes = async () => {
-  const headers = await getAuthHeaders();
-  return axios.get(`${BASE_URL}/time`, headers);
-};
-
-export const getAvailableDatesByDoctor = async (doctorId) => {
-  const headers = await getAuthHeaders();
-  return axios.get(`${BASE_URL}/${doctorId}/available-dates`, headers);
-};
-
-export const getAvailableTimesByDoctorAndDate = async (doctorId, date) => {
-  const headers = await getAuthHeaders();
-  return axios.get(`${BASE_URL}/${doctorId}/available-times`, {
-    ...headers,
-    params: { date }
-  });
-};
 
 export const createAppointmentBySpecialty = async ( specialty,appointmentData) => {
   const headers = await getAuthHeaders();
-  return axios.post(`http://10.0.2.2:8080/api/appointment/create/${specialty}`, appointmentData, headers);
+  return axios.post(`${BASE_URL}/create/${specialty}`, appointmentData, headers);
 };

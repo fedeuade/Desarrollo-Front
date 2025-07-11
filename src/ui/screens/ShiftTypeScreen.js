@@ -32,6 +32,7 @@ export default function EmptyShiftScreen(props) {
             <Image
           source={require('../images/medico.png')}
           style={styles.image}
+          testID="shift-image"
         />
       <View/>
 
