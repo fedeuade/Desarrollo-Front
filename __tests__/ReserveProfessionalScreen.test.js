@@ -3,7 +3,6 @@ import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import ReserveProfessionalScreen from '../src/ui/screens/ReserveProfessionalScreen';
 import { useRoute } from '@react-navigation/native';
  
-// Mock de useRoute si es necesario
 jest.mock('@react-navigation/native', () => {
   const actualNav = jest.requireActual('@react-navigation/native');
   return {
@@ -14,7 +13,7 @@ jest.mock('@react-navigation/native', () => {
  
 describe('ReserveProfessionalScreen', () => {
   beforeEach(() => {
-    useRoute.mockReturnValue({}); // si usás useRoute()
+    useRoute.mockReturnValue({}); 
   });
  
   it('renderiza y responde a botones de seleccionar fecha y hora', async () => {

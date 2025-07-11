@@ -26,7 +26,6 @@ export default function ForgetPasswordScreen(props) {
         navigation.navigate("EnterCode",{email})
         Alert.alert('Éxito', 'Codigo enviado');
       } catch (error) {
-        console.error("Error confirmando cambios:", error);
         Alert.alert('Error', 'Email invalido.');
       }
     };

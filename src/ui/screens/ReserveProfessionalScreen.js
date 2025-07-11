@@ -19,12 +19,11 @@ import {
 import CalendarPicker from 'react-native-calendar-picker';
 import Modal from 'react-native-modal';
 import moment from 'moment'; 
-import { useRoute } from '@react-navigation/native';
+
 
 export default function ReserveProfessionalScreen(props) {
   const [doctorModalVisible, setDoctorModalVisible] = useState(false);
-  const route = useRoute();
-  const d = props.route.params?.d ?? null;
+
   const{navigation}=props;
   const [doctor, setDoctor] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
@@ -40,16 +39,10 @@ export default function ReserveProfessionalScreen(props) {
   );
   useEffect(() => {
     const fetchData = async () => {
-      console.log('doctor recibido:',d);
       try {
         const response = await getAllDoctors();
       setDoctor(response.data);
-      if (d && d.name) {
-        const found = response.data.find(doc => doc.name === d.name);
-        if (found) {
-          setSelectedDoctor(found);
-        }
-      }
+          console.log(response.data)
       } catch (error) {
       }
     };
@@ -96,7 +89,6 @@ export default function ReserveProfessionalScreen(props) {
         ]
       );
     } catch (error) {
-      console.error('Error al reservar turno:', error);
       Alert.alert('Error', 'No se pudo reservar el turno');
     }
   };
@@ -115,6 +107,7 @@ export default function ReserveProfessionalScreen(props) {
              placeholder="Doctor"
             options={doctor.map(doc => doc.name)} 
             onSelect={(nombre) => {
+              console.log('Doctor seleccionado:', nombre);
               const doctorObj = doctor.find(doc => doc.name === nombre);
               setSelectedDoctor(doctorObj);
             }}

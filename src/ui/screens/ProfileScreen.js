@@ -22,7 +22,6 @@ export default function ProfileScreen({ navigation }) {
         await AsyncStorage.clear();
         goToLogin();
       } catch (error) {
-        console.error('Error al cancelar turno:', error);
         Alert.alert("Error", "No se pudo cancelar el turno");
       }
     };
@@ -36,13 +35,13 @@ export default function ProfileScreen({ navigation }) {
       visible={showLogoutModal}
       onRequestClose={() => {
         setShowLogoutModal(false);
-        navigation.goBack(); // 👉 también cerrás sesión si estás en una pantalla especial
+        navigation.goBack(); 
       }}
     >
       <TouchableWithoutFeedback
         onPress={() => {
           setShowLogoutModal(false);
-          navigation.navigate('Profile'); // 👉 volver atrás si toca afuera
+          navigation.navigate('Profile'); 
         }}
       >
         <View style={styles.modalOverlay}>

@@ -90,7 +90,6 @@ const handleLogin = async () => {
         
       ] );
     } catch (error) {
-      Alert.alert("Error","Contraseña o usuario incorrecto")
     }
   };
     return (

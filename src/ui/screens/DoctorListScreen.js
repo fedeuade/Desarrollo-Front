@@ -14,7 +14,6 @@ export default function DoctorListScreen({ navigation }) {
       setDoctors(data);
       // NO tocamos selectedFilter aquí (para no perder filtros)
     } catch (err) {
-      console.error('Error obteniendo doctores:', err);
     }
   };
 
